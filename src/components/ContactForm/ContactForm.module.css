@@ -1,0 +1,42 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  border: 1px solid #2a2a2a;
+  border-radius: 2px;
+  width: 300px;
+  align-items: center;
+  font-size: 14px;
+  padding-top: 10px;
+}
+
+.group {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 280px;
+}
+
+.field {
+  outline: none;
+  border: 1px solid #2a2a2a;
+  border-radius: 2px;
+}
+
+.field:focus {
+  border: 1px solid blue;
+}
+
+.error {
+  position: absolute;
+  bottom: -15px;
+  color: red;
+  font-size: 10px;
+}
+
+.button {
+  margin-bottom: 10px;
+  width: 100px;
+  height: 30px;
+  text-align: center;
+}
