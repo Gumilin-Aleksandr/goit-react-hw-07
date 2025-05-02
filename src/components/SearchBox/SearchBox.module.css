@@ -6,6 +6,10 @@
   font-size: 14px;
 }
 
+label {
+  font-weight: bold;
+}
+
 .field {
   outline: none;
   border: 1px solid #2a2a2a;

@@ -2,20 +2,19 @@ import { ErrorMessage, Field, Form, Formik } from "formik";
 import * as Yup from "yup";
 import s from "./ContactForm.module.css";
 import { useDispatch } from "react-redux";
-import { addContact } from "../../redux/contactsSlice";
-import { nanoid } from "@reduxjs/toolkit";
+import { addContactThunk } from "../../redux/contactsOps";
 
 const initialValues = {
-  contactName: "",
-  contactNumber: "",
+  name: "",
+  number: "",
 };
 
 const FeedbackSchema = Yup.object().shape({
-  contactName: Yup.string()
+  name: Yup.string()
     .min(3, "Too Short!")
     .max(50, "Too Long!")
     .required("Required"),
-  contactNumber: Yup.string()
+  number: Yup.string()
     .min(3, "Too Short!")
     .max(50, "Too Long!")
     .required("Required"),
@@ -24,13 +23,7 @@ const FeedbackSchema = Yup.object().shape({
 function ContactForm() {
   const dispatch = useDispatch();
   const handleSubmit = (values, actions) => {
-    dispatch(
-      addContact({
-        id: nanoid(),
-        name: values.contactName,
-        number: values.contactNumber,
-      })
-    );
+    dispatch(addContactThunk(values));
     actions.resetForm();
   };
 
@@ -42,22 +35,14 @@ function ContactForm() {
     >
       <Form className={s.container}>
         <div className={s.group}>
-          <label htmlFor="contactName">Name</label>
-          <Field className={s.field} type="text" name="contactName" />
-          <ErrorMessage
-            name="contactName"
-            component="span"
-            className={s.error}
-          />
+          <label htmlFor="name">Name</label>
+          <Field className={s.field} type="text" name="name" />
+          <ErrorMessage name="name" component="span" className={s.error} />
         </div>
         <div className={s.group}>
-          <label htmlFor="contactNumber">Number</label>
-          <Field className={s.field} type="number" name="contactNumber" />
-          <ErrorMessage
-            name="contactNumber"
-            component="span"
-            className={s.error}
-          />
+          <label htmlFor="number">Number</label>
+          <Field className={s.field} type="number" name="number" />
+          <ErrorMessage name="number" component="span" className={s.error} />
         </div>
         <button className={s.button} type="submit">
           Add contact
